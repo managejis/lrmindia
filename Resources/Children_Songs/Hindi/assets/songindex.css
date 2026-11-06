@@ -1,0 +1,23 @@
+/* Song index (shown inside an iframe) - matches songbook.css look */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;color:#4e5d6b;font-family:"Roboto",sans-serif}
+a{text-decoration:none;color:inherit}
+.index-head{position:sticky;top:0;z-index:2;background:#fdf1f2;border-bottom:1px solid #eceff1;padding:1.1rem 1.35rem}
+.index-head h2{display:flex;align-items:center;gap:.55rem;font-size:1.08rem;font-weight:600;margin:0 0 .8rem;color:#dc3545}
+.index-count{font-weight:400;font-size:.8rem;color:#8a96a1;margin-left:auto}
+.index-head input{width:100%;padding:.65rem 1rem;border:1px solid #d9dee2;border-radius:10px;font:inherit;color:#4e5d6b;outline:none}
+.index-head input:focus{border-color:#dc3545;box-shadow:0 0 0 3px rgba(220,53,69,.12)}
+.index-list{list-style:none;margin:0;padding:0 0 .5rem}
+.index-list li+li{border-top:1px solid #f0f2f4}
+.index-list a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.35rem;transition:.2s}
+.index-list a:hover{background:#fdf1f2;color:#dc3545}
+.index-list a.active{background:#dc3545;color:#fff}
+.idx-num{flex:0 0 auto;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#fbe3e6;color:#dc3545;font-family:"Ubuntu",sans-serif;font-weight:700;font-size:.78rem}
+a.active .idx-num{background:rgba(255,255,255,.25);color:#fff}
+.idx-titles{display:flex;flex-direction:column;gap:2px;min-width:0}
+.idx-title{font-weight:500;line-height:1.35}
+.idx-title-kn{font-family:"Noto Sans Devanagari",sans-serif;font-size:.88rem;color:#8a96a1}
+a.active .idx-title-kn{color:rgba(255,255,255,.8)}
+.index-list a i{margin-left:auto;color:#b4bcc3}
+a:hover i{color:#dc3545} a.active i{color:#fff}
+.index-empty{padding:1rem 1.35rem;font-style:italic;color:#8a96a1}
