@@ -35,6 +35,15 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .trust-carousel{border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);background:#fff}
+    .trust-carousel .carousel-item{aspect-ratio:4/3;background:#f4f4f4}
+    .trust-carousel .carousel-item img{width:100%;height:100%;object-fit:contain}
+    .trust-carousel .carousel-indicators [data-bs-target]{background-color:#dc3545}
+    .trust-carousel .carousel-control-prev-icon,.trust-carousel .carousel-control-next-icon{background-color:rgba(220,53,69,.85);border-radius:50%;background-size:55%}
+    .department-details .visual-section .main-visual .stats-overlay{position:static;display:flex;justify-content:space-around;margin-top:1rem;padding:1rem}
+    .department-details .visual-section .main-visual .stats-overlay .stat-item:not(:last-child){margin:0;padding:0 1.5rem 0 0;border-bottom:0;border-right:1px solid #e5e5e5}
+  </style>
 </head>
 
 <body class="department-details-page">
@@ -209,7 +218,20 @@ Community Development
           <div class="col-lg-5">
             <div class="visual-section" data-aos="fade-left" data-aos-delay="300">
               <div class="main-visual">
-                <img src="assets/img/health/YouthMinistry.webp" alt="Men's Hostel" class="img-fluid department-image">
+                <div id="trustCarousel" class="carousel slide trust-carousel" data-bs-ride="carousel" data-bs-interval="4500">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#trustCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Free Music Class"></button>
+                    <button type="button" data-bs-target="#trustCarousel" data-bs-slide-to="1" aria-label="Tailoring class"></button>
+                    <button type="button" data-bs-target="#trustCarousel" data-bs-slide-to="2" aria-label="Free Tailoring Centre"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active"><img src="assets/img/trust/music-class.jpg" alt="LRM Trust Free Music Class" class="d-block w-100"></div>
+                    <div class="carousel-item"><img src="assets/img/trust/tailoring-1.jpg" alt="LRM Trust Free Tailoring Class" class="d-block w-100"></div>
+                    <div class="carousel-item"><img src="assets/img/trust/tailoring-2.jpg" alt="LRM Trust Free Tailoring Centre" class="d-block w-100"></div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#trustCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#trustCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+                </div>
                 <div class="stats-overlay" data-aos="zoom-in" data-aos-delay="500">
                   <div class="stat-item">
                     <span class="stat-number">98%</span>

@@ -46,5 +46,14 @@ function initIndexFrame(){
   var cur=body.getAttribute("data-current-lesson")||"";
   f.setAttribute("src","lesson-index.html?active="+encodeURIComponent(cur));
 }
-ready(function(){initTabs();initSidebarToggle();initIndexFrame();});
+function jumpToLesson(){
+  var go=/[?&]jump=1/.test(window.location.search);
+  if(!go||window.innerWidth>991){return;}
+  var el=$("#lesson");if(!el){return;}
+  try{if("scrollRestoration" in history){history.scrollRestoration="manual";}}catch(e){}
+  function run(){var h=$("#header"),off=(h?h.offsetHeight:70)+10;
+    window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+(window.pageYOffset||0)-off));}
+  run();window.addEventListener("load",function(){run();setTimeout(run,300);});
+}
+ready(function(){initTabs();initSidebarToggle();initIndexFrame();jumpToLesson();});
 })();
