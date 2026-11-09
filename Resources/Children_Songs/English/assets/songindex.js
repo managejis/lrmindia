@@ -46,5 +46,11 @@
 
   /* scroll active song into view when shown inside a song page */
   var act = document.querySelector("#list a.active");
-  if (act && act.scrollIntoView) { act.scrollIntoView({ block: "center" }); }
+  /* NOTE: do not use scrollIntoView here - inside an iframe it also scrolls the PARENT page
+     (on phones that jumped the song page down to the index, hiding the lyrics at the top).
+     Scroll only this frame's own viewport instead. */
+  if (act) {
+    var target = Math.max(0, act.offsetTop - Math.round((window.innerHeight - act.offsetHeight) / 2));
+    window.scrollTo(0, target);
+  }
 })();
