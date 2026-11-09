@@ -664,3 +664,47 @@
 .book-soon{padding:1.6rem 1.35rem;font-style:italic;color:color-mix(in srgb,#4e5d6b,transparent 30%);flex:1 1 auto}
 @media (max-width:991px){.lesson-card{padding:1.5rem 1.25rem}.lesson-title{font-size:1.45rem}.book-grid{grid-template-columns:1fr}}
 @media (max-width:576px){.lesson-tabs button{flex:1 1 45%}}
+
+/* ==========================================================================
+   Lesson pages: touch-friendly navigation on phones (bottom app bar)
+   ========================================================================== */
+
+/* labels: long on desktop, short on phones */
+.lesson-tabs .lt-short{display:none}
+.lt-current{display:none}
+
+@media (max-width:767.98px){
+  .lesson-tabs .lt-long{display:none}
+  .lesson-tabs .lt-short{display:inline}
+
+  /* ---- top row: lesson badge + big Previous / Next buttons ---- */
+  .lesson-top{flex-direction:column;align-items:stretch;gap:.7rem}
+  .lesson-no{align-self:flex-start}
+  .lesson-nav{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;width:100%}
+  .lesson-nav a,.lesson-nav span{justify-content:center;min-height:48px;font-size:.95rem;border-radius:12px}
+
+  /* ---- download buttons: two big equal buttons ---- */
+  .panel-actions{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .panel-actions .btn-dl{justify-content:center;gap:.4rem;min-height:48px;font-size:.9rem;border-radius:12px;padding:.5rem .4rem;text-align:center;white-space:nowrap}
+  .panel-actions .btn-dl:only-child{grid-column:1/-1}
+
+  /* ---- "you are viewing" label ---- */
+  .lt-current{display:flex;align-items:center;gap:.5rem;font-family:"Ubuntu",sans-serif;font-weight:700;font-size:1.05rem;color:#dc3545;margin:0 0 .9rem}
+  .lt-current .bi{font-size:1.2rem}
+}
+
+/* bottom app bar */
+@media (max-width:767.98px){
+  body.tabs-bar{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  body.tabs-bar .scroll-top{bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+  .lesson-tabs.is-bar{position:fixed;left:0;right:0;bottom:0;z-index:1000;margin:0;border-radius:0;
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:0 0 env(safe-area-inset-bottom,0px);
+    background:#fff;border-top:1px solid color-mix(in srgb,#4e5d6b,transparent 82%);
+    box-shadow:0 -6px 22px color-mix(in srgb,#4e5d6b,transparent 86%)}
+  .lesson-tabs.is-bar button{flex-direction:column;gap:.15rem;min-height:64px;padding:.45rem .1rem .4rem;border-radius:0;
+    font-size:.68rem;font-weight:600;line-height:1.15;white-space:normal;text-align:center;position:relative;
+    -webkit-tap-highlight-color:transparent}
+  .lesson-tabs.is-bar button .bi{font-size:1.4rem;line-height:1}
+  .lesson-tabs.is-bar button.active{background:color-mix(in srgb,#dc3545,transparent 93%);color:#dc3545;box-shadow:none}
+  .lesson-tabs.is-bar button.active::before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 3px 3px;background:#dc3545}
+}
