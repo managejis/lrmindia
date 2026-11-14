@@ -1,0 +1,710 @@
+/* ==========================================================================
+   Lesson Book - persistent 40/60 shell + collapsible index (LRM India / Kannada)
+   Extends  assets/css/main.css  (Bootstrap 5 / MediNest theme)
+   Accent #dc3545 | body #4e5d6b | surface #fff | light #f7f9f9
+   ========================================================================== */
+
+.songbook-page {
+  background: #f7f9f9;
+}
+
+.songbook-section {
+  background: #f7f9f9;
+  overflow: visible; /* theme sets section{overflow:clip} which breaks sticky */
+}
+
+.songbook-wrap {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 1.5rem;
+}
+
+/* ---------- index landing (root page) intro ---------- */
+.songbook-intro {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.songbook-intro h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.songbook-intro p {
+  color: #4e5d6b;
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* ---------- 40/60 shell ---------- */
+.songbook-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  gap: 1.75rem;
+  align-items: start;
+  min-height: calc(100vh - 250px);
+}
+
+/* ---------- index panel (left, sticky) ---------- */
+.index-panel-col {
+  position: sticky;
+  top: 96px;
+  min-width: 0;
+}
+
+.index-panel {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  border-radius: 16px;
+  box-shadow: 0 8px 26px color-mix(in srgb, #4e5d6b, transparent 94%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: calc(100vh - 250px);
+}
+
+.index-panel-head {
+  padding: 1.15rem 1.35rem;
+  background: color-mix(in srgb, #dc3545, transparent 96%);
+  border-bottom: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  flex-shrink: 0;
+}
+
+.index-panel-head h2 {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin: 0 0 .85rem;
+  color: #dc3545;
+}
+
+.index-count {
+  font-weight: 400;
+  font-size: .8rem;
+  color: color-mix(in srgb, #4e5d6b, transparent 30%);
+  margin-left: auto;
+}
+
+.index-search {
+  flex-shrink: 0;
+}
+
+.index-search input {
+  width: 100%;
+  padding: .65rem 1rem;
+  border: 1px solid color-mix(in srgb, #4e5d6b, transparent 82%);
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #4e5d6b;
+  outline: none;
+  transition: .25s;
+}
+
+.index-search input:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #dc3545, transparent 88%);
+}
+
+.index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.index-list li + li {
+  border-top: 1px solid color-mix(in srgb, #4e5d6b, transparent 94%);
+}
+
+.index-list a {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .8rem 1.35rem;
+  color: #4e5d6b;
+  transition: .2s;
+}
+
+.index-list a:hover {
+  background: color-mix(in srgb, #dc3545, transparent 96%);
+  color: #dc3545;
+}
+
+.index-list a.active {
+  background: #dc3545;
+  color: #fff;
+}
+
+.index-list .idx-num {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, #dc3545, transparent 90%);
+  color: #dc3545;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+}
+
+.index-list a.active .idx-num {
+  background: rgba(255, 255, 255, .25);
+  color: #fff;
+}
+
+.index-list .idx-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.index-list .idx-title {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.index-list .idx-title-kn {
+  font-family: "Noto Sans Tamil", sans-serif;
+  font-size: .88rem;
+  color: color-mix(in srgb, #4e5d6b, transparent 30%);
+}
+
+.index-list a.active .idx-title-kn {
+  color: rgba(255, 255, 255, .8);
+}
+
+.index-list a i {
+  margin-left: auto;
+  color: color-mix(in srgb, #4e5d6b, transparent 55%);
+  transition: .2s;
+}
+
+.index-list a:hover i {
+  color: #dc3545;
+}
+
+.index-list a.active i {
+  color: #fff;
+}
+
+.index-empty {
+  padding: 1rem 1.35rem 1.25rem;
+  color: color-mix(in srgb, #4e5d6b, transparent 35%);
+  font-style: italic;
+}
+
+/* ---------- viewer column (right) ---------- */
+.songbook-viewer-col {
+  min-width: 0;
+}
+
+/* ---------- song card ---------- */
+.song-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  border-radius: 18px;
+  box-shadow: 0 10px 34px color-mix(in srgb, #4e5d6b, transparent 92%);
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.song-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+}
+
+.song-no {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #dc3545;
+  background: color-mix(in srgb, #dc3545, transparent 90%);
+  border: 1px solid color-mix(in srgb, #dc3545, transparent 72%);
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+/* ---------- language toggle ---------- */
+.lang-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, #4e5d6b, transparent 94%);
+}
+
+.lang-toggle button {
+  border: 0;
+  background: transparent;
+  color: #4e5d6b;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: .02em;
+  padding: .5rem 1.35rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.lang-toggle button:hover {
+  color: #dc3545;
+}
+
+.lang-toggle button.active {
+  background: #dc3545;
+  color: #fff;
+  box-shadow: 0 5px 14px color-mix(in srgb, #dc3545, transparent 70%);
+}
+
+.song-title {
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.song-lyrics {
+  white-space: pre-line;
+  color: #4e5d6b;
+  font-size: 1.15rem;
+  line-height: 1.95;
+  padding: 1.65rem 0;
+  border-top: 1px dashed color-mix(in srgb, #4e5d6b, transparent 82%);
+  border-bottom: 1px dashed color-mix(in srgb, #4e5d6b, transparent 82%);
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.song-lyrics.kn {
+  font-family: "Noto Sans Tamil", "Ubuntu", sans-serif;
+  font-size: 1.35rem;
+  line-height: 2.1;
+}
+
+.song-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  flex-shrink: 0;
+}
+
+.btn-share,
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+  padding: .65rem 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn-share {
+  background: #dc3545;
+  color: #fff;
+  border: 1.5px solid #dc3545;
+  box-shadow: 0 6px 18px color-mix(in srgb, #dc3545, transparent 72%);
+}
+
+.btn-share:hover {
+  background: color-mix(in srgb, #dc3545, black 12%);
+  transform: translateY(-2px);
+}
+
+.btn-copy {
+  background: transparent;
+  color: #dc3545;
+  border: 1.5px solid color-mix(in srgb, #dc3545, transparent 55%);
+}
+
+.btn-copy:hover {
+  background: color-mix(in srgb, #dc3545, transparent 92%);
+  border-color: #dc3545;
+  transform: translateY(-2px);
+}
+
+.song-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  flex-shrink: 0;
+}
+
+.song-tag {
+  display: inline-block;
+  font-weight: 600;
+  font-size: .78rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, #dc3545, transparent 92%);
+  color: #dc3545;
+  border: 1px solid color-mix(in srgb, #dc3545, transparent 72%);
+  transition: .25s;
+}
+
+.song-tag:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* ---------- collapse toggle (left edge of viewer) ---------- */
+.index-toggle {
+  position: absolute;
+  left: -32px;
+  top: 2.5rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 0 10px 10px 0;
+  background: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  transition: background .25s, transform .25s, box-shadow .25s, width .25s;
+  box-shadow: 2px 2px 10px color-mix(in srgb, #dc3545, transparent 65%);
+}
+
+.index-toggle:hover {
+  background: color-mix(in srgb, #dc3545, black 14%);
+  transform: translateX(-4px);
+  box-shadow: 4px 4px 20px color-mix(in srgb, #dc3545, transparent 50%);
+}
+
+.index-toggle .bi {
+  font-size: 1rem;
+  transition: transform .35s;
+}
+
+.index-toggle:focus-visible {
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}
+
+.index-collapsed .index-toggle .bi {
+  transform: rotate(180deg);
+}
+
+/* collapsed state: index panel becomes a narrow bar with just numbers */
+.index-collapsed .index-panel {
+  border-radius: 16px;
+  box-shadow: 0 8px 26px color-mix(in srgb, #4e5d6b, transparent 94%);
+}
+
+.index-collapsed .index-panel-head,
+.index-collapsed .index-search,
+.index-collapsed .index-list a i,
+.index-collapsed .index-list .idx-titles {
+  display: none;
+}
+
+.index-collapsed .index-list a {
+  justify-content: center;
+  padding: .6rem .4rem;
+}
+
+.index-collapsed .index-list .idx-num {
+  margin: 0;
+}
+
+.index-collapsed .index-panel-col {
+  min-width: 56px;
+}
+
+.index-collapsed .songbook-shell {
+  grid-template-columns: minmax(56px, 56px) 1fr;
+}
+
+.index-collapsed .index-toggle {
+  left: 28px;
+}
+
+/* ---------- toast ---------- */
+.songbook-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 20px);
+  background: #4e5d6b;
+  color: #fff;
+  font-family: "Ubuntu", sans-serif;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: .75rem 1.4rem;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  z-index: 2000;
+}
+
+.songbook-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 991px) {
+  .songbook-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .index-panel-col {
+    position: static;
+    order: 2;
+  }
+
+  .songbook-viewer-col {
+    order: 1;
+  }
+
+  .index-panel {
+    min-height: 0;
+  }
+
+  .index-list {
+    max-height: 340px;
+  }
+
+  .index-toggle {
+    display: none; /* on mobile the sidebar is full-width; no collapse needed */
+  }
+}
+
+@media (max-width: 576px) {
+  .songbook-wrap {
+    padding: 0 1rem;
+  }
+
+  .song-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .song-title {
+    font-size: 1.4rem;
+  }
+
+  .song-lyrics {
+    font-size: 1.05rem;
+  }
+
+  .song-lyrics.kn {
+    font-size: 1.2rem;
+  }
+
+  .lang-toggle button {
+    padding: .5rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   Index in its own file (song-index.html) shown in an iframe
+   ========================================================================== */
+.index-panel-col {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  border-radius: 16px;
+  box-shadow: 0 8px 26px color-mix(in srgb, #4e5d6b, transparent 94%);
+  overflow: hidden;
+  height: calc(100vh - 130px);
+  min-height: 420px;
+}
+.index-frame { display: block; width: 100%; height: 100%; border: 0; }
+.songbook-viewer-col { position: relative; }
+
+/* arrow button: hide / show the index */
+.index-toggle { top: 2.5rem; }
+.index-collapsed .songbook-shell { grid-template-columns: 0 minmax(0, 1fr); gap: 0; }
+.index-collapsed .index-panel-col { visibility: hidden; border: 0; box-shadow: none; min-width: 0; width: 0; }
+.index-collapsed .index-toggle { left: 0; }
+
+/* landing page: index only */
+.landing-index {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, #4e5d6b, transparent 92%);
+  border-radius: 16px;
+  box-shadow: 0 8px 26px color-mix(in srgb, #4e5d6b, transparent 94%);
+  overflow: hidden;
+}
+.landing-index-frame { display: block; width: 100%; height: 900px; border: 0; }
+
+@media (max-width: 991px) {
+  .index-panel-col { height: 420px; position: static; }
+  .index-collapsed .songbook-shell { grid-template-columns: 1fr; }
+  .index-collapsed .index-panel-col { display: none; }
+}
+
+
+/* "Index" label next to the arrow so it is clear how to bring the index back */
+.index-toggle {
+  width: auto;
+  height: 34px;
+  padding: 0 .85rem 0 .6rem;
+  gap: .35rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: .02em;
+  left: -28px;
+  border-radius: 0 10px 10px 0;
+  white-space: nowrap;
+}
+.index-toggle:hover { transform: none; }
+.index-collapsed .index-toggle { left: 0; }
+@media (max-width: 991px) { .index-toggle { display: none; } }
+
+.index-toggle { top: .4rem; height: 30px; }
+
+
+/* YouTube links under the lyrics (shown for both English and Tamil) */
+.song-videos { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; flex-shrink: 0; }
+.btn-video {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: "Ubuntu", sans-serif; font-weight: 600; font-size: .9rem;
+  padding: .6rem 1.2rem; border-radius: 10px;
+  color: #c4302b; background: #fff; border: 1.5px solid color-mix(in srgb, #c4302b, transparent 55%);
+  transition: .25s;
+}
+.btn-video:hover { background: #c4302b; border-color: #c4302b; color: #fff; transform: translateY(-2px); }
+.btn-video .bi { font-size: 1.15rem; }
+
+
+/* ==========================================================================
+   Lesson pages: card + tabs
+   ========================================================================== */
+.lesson-card{position:relative;background:#fff;border:1px solid color-mix(in srgb,#4e5d6b,transparent 92%);border-radius:18px;box-shadow:0 10px 34px color-mix(in srgb,#4e5d6b,transparent 92%);padding:2rem 2.25rem 2.25rem}
+.lesson-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem}
+.lesson-no{font-family:"Ubuntu",sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:#dc3545;background:color-mix(in srgb,#dc3545,transparent 90%);border:1px solid color-mix(in srgb,#dc3545,transparent 72%);padding:5px 14px;border-radius:999px}
+.lesson-nav{display:inline-flex;gap:.5rem}
+.lesson-nav a,.lesson-nav span{display:inline-flex;align-items:center;gap:.35rem;font-family:"Ubuntu",sans-serif;font-weight:600;font-size:.85rem;padding:.4rem .95rem;border-radius:999px;border:1.5px solid color-mix(in srgb,#dc3545,transparent 55%);color:#dc3545;transition:.25s}
+.lesson-nav a:hover{background:#dc3545;color:#fff}
+.lesson-nav span{opacity:.4;border-color:color-mix(in srgb,#4e5d6b,transparent 70%);color:#4e5d6b}
+.lesson-title{font-size:1.75rem;font-weight:500;line-height:1.35;margin:0 0 1.25rem}
+.lesson-tabs{display:flex;flex-wrap:wrap;gap:.4rem;padding:.35rem;border-radius:14px;background:color-mix(in srgb,#4e5d6b,transparent 94%);margin-bottom:1.5rem}
+.lesson-tabs button{flex:1 1 auto;border:0;background:transparent;color:#4e5d6b;font-family:"Ubuntu",sans-serif;font-weight:600;font-size:.88rem;padding:.6rem 1rem;border-radius:10px;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;white-space:nowrap}
+.lesson-tabs button:hover{color:#dc3545}
+.lesson-tabs button.active{background:#dc3545;color:#fff;box-shadow:0 5px 14px color-mix(in srgb,#dc3545,transparent 70%)}
+.lesson-panel[hidden]{display:none}
+.panel-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.25rem}
+.btn-dl{display:inline-flex;align-items:center;gap:.5rem;font-family:"Ubuntu",sans-serif;font-weight:600;font-size:.88rem;padding:.55rem 1.1rem;border-radius:10px;color:#dc3545;background:#fff;border:1.5px solid color-mix(in srgb,#dc3545,transparent 55%);transition:.25s}
+.btn-dl:hover{background:#dc3545;border-color:#dc3545;color:#fff;transform:translateY(-2px)}
+.btn-dl.primary{background:#dc3545;color:#fff;border-color:#dc3545}
+.btn-dl.primary:hover{background:color-mix(in srgb,#dc3545,black 12%)}
+.lesson-content{color:#4e5d6b;font-size:1.05rem;line-height:1.8;border-top:1px dashed color-mix(in srgb,#4e5d6b,transparent 82%);padding-top:1.4rem}
+.lesson-content h1{font-size:1.45rem;font-weight:600;color:#dc3545;margin:1.6rem 0 .7rem}
+.lesson-content h2{font-size:1.2rem;font-weight:600;margin:1.4rem 0 .5rem}
+.lesson-content h3{font-size:1.05rem;font-weight:600;margin:1.2rem 0 .4rem}
+.lesson-content h1:first-child,.lesson-content h2:first-child{margin-top:0}
+.lesson-content p{margin:0 0 .85rem}
+.lesson-content ul,.lesson-content ol{margin:0 0 1rem 1.2rem}
+.lesson-content li{margin-bottom:.35rem}
+.lesson-content li>p{margin:0}
+.lesson-content blockquote{margin:1rem 0;padding:.9rem 1.2rem;border-left:4px solid #dc3545;background:color-mix(in srgb,#dc3545,transparent 95%);border-radius:0 10px 10px 0}
+.lesson-content blockquote p:last-child{margin-bottom:0}
+.lesson-content table{width:100%;border-collapse:collapse;margin:0 0 1.3rem;font-size:.98rem}
+.lesson-content th,.lesson-content td{border:1px solid color-mix(in srgb,#4e5d6b,transparent 80%);padding:.55rem .8rem;vertical-align:top}
+.lesson-content thead th,.lesson-content tr.header th{background:color-mix(in srgb,#dc3545,transparent 92%)}
+.lesson-content img{max-width:100%;height:auto;border-radius:8px;margin:.5rem 0}
+.lesson-content hr{border-color:color-mix(in srgb,#4e5d6b,transparent 80%)}
+.pdf-frame{display:block;width:100%;height:78vh;min-height:520px;border:1px solid color-mix(in srgb,#4e5d6b,transparent 85%);border-radius:12px;background:#f1f3f5}
+.pdf-note{font-size:.9rem;color:color-mix(in srgb,#4e5d6b,transparent 25%);margin-top:.6rem}
+.lesson-missing{padding:1.5rem;border:1px dashed color-mix(in srgb,#4e5d6b,transparent 70%);border-radius:12px;text-align:center;font-style:italic}
+
+/* ---------- landing: books ---------- */
+.book-grid{align-items:start;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;margin-top:.5rem}
+.book-card{background:#fff;border:1px solid color-mix(in srgb,#4e5d6b,transparent 92%);border-radius:16px;box-shadow:0 8px 26px color-mix(in srgb,#4e5d6b,transparent 94%);overflow:hidden;display:flex;flex-direction:column}
+.book-card-head{display:flex;align-items:center;gap:1rem;padding:1.15rem 1.35rem;background:color-mix(in srgb,#dc3545,transparent 96%);border-bottom:1px solid color-mix(in srgb,#4e5d6b,transparent 92%)}
+.book-badge{flex:0 0 auto;width:46px;height:46px;border-radius:12px;background:#dc3545;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"Ubuntu",sans-serif;line-height:1}
+.book-badge small{font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.book-badge b{font-size:1.2rem}
+.book-card-head h2{font-size:1.15rem;font-weight:600;margin:0;line-height:1.3}
+.book-card-head p{margin:.15rem 0 0;font-size:.82rem;color:color-mix(in srgb,#4e5d6b,transparent 25%)}
+.book-lessons{list-style:none;margin:0;padding:.4rem 0 .8rem;flex:1 1 auto}
+.book-lessons li+li{border-top:1px solid color-mix(in srgb,#4e5d6b,transparent 94%)}
+.book-lessons a,.book-lessons .soon{display:flex;align-items:center;gap:.75rem;padding:.55rem 1.35rem;color:#4e5d6b;transition:.2s}
+.book-lessons a:hover{background:color-mix(in srgb,#dc3545,transparent 96%);color:#dc3545}
+.book-lessons .soon{opacity:.5}
+.book-lessons .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:color-mix(in srgb,#dc3545,transparent 90%);color:#dc3545;font-family:"Ubuntu",sans-serif;font-weight:700;font-size:.74rem}
+.book-lessons .soon .n{background:color-mix(in srgb,#4e5d6b,transparent 90%);color:#4e5d6b}
+.book-lessons .t{font-weight:500;line-height:1.3}
+.book-lessons .tag{margin-left:auto;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8a96a1;white-space:nowrap}
+.book-soon{padding:1.6rem 1.35rem;font-style:italic;color:color-mix(in srgb,#4e5d6b,transparent 30%);flex:1 1 auto}
+@media (max-width:991px){.lesson-card{padding:1.5rem 1.25rem}.lesson-title{font-size:1.45rem}.book-grid{grid-template-columns:1fr}}
+@media (max-width:576px){.lesson-tabs button{flex:1 1 45%}}
+
+/* ==========================================================================
+   Lesson pages: touch-friendly navigation on phones (bottom app bar)
+   ========================================================================== */
+
+/* labels: long on desktop, short on phones */
+.lesson-tabs .lt-short{display:none}
+.lt-current{display:none}
+
+@media (max-width:767.98px){
+  .lesson-tabs .lt-long{display:none}
+  .lesson-tabs .lt-short{display:inline}
+
+  /* ---- top row: lesson badge + big Previous / Next buttons ---- */
+  .lesson-top{flex-direction:column;align-items:stretch;gap:.7rem}
+  .lesson-no{align-self:flex-start}
+  .lesson-nav{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;width:100%}
+  .lesson-nav a,.lesson-nav span{justify-content:center;min-height:48px;font-size:.95rem;border-radius:12px}
+
+  /* ---- download buttons: two big equal buttons ---- */
+  .panel-actions{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .panel-actions .btn-dl{justify-content:center;gap:.4rem;min-height:48px;font-size:.9rem;border-radius:12px;padding:.5rem .4rem;text-align:center;white-space:nowrap}
+  .panel-actions .btn-dl:only-child{grid-column:1/-1}
+
+  /* ---- "you are viewing" label ---- */
+  .lt-current{display:flex;align-items:center;gap:.5rem;font-family:"Ubuntu",sans-serif;font-weight:700;font-size:1.05rem;color:#dc3545;margin:0 0 .9rem}
+  .lt-current .bi{font-size:1.2rem}
+}
+
+/* bottom app bar */
+@media (max-width:767.98px){
+  body.tabs-bar{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  body.tabs-bar .scroll-top{bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+  .lesson-tabs.is-bar{position:fixed;left:0;right:0;bottom:0;z-index:1000;margin:0;border-radius:0;
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:0 0 env(safe-area-inset-bottom,0px);
+    background:#fff;border-top:1px solid color-mix(in srgb,#4e5d6b,transparent 82%);
+    box-shadow:0 -6px 22px color-mix(in srgb,#4e5d6b,transparent 86%)}
+  .lesson-tabs.is-bar button{flex-direction:column;gap:.15rem;min-height:64px;padding:.45rem .1rem .4rem;border-radius:0;
+    font-size:.68rem;font-weight:600;line-height:1.15;white-space:normal;text-align:center;position:relative;
+    -webkit-tap-highlight-color:transparent}
+  .lesson-tabs.is-bar button .bi{font-size:1.4rem;line-height:1}
+  .lesson-tabs.is-bar button.active{background:color-mix(in srgb,#dc3545,transparent 93%);color:#dc3545;box-shadow:none}
+  .lesson-tabs.is-bar button.active::before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 3px 3px;background:#dc3545}
+}
