@@ -1,0 +1,6 @@
+.lesson-content,.lesson-title,.idx-title,.lp-list,.lp-cover h3,.lp-hero h1,.lp-hero p,.lp-feature,.index-head h2,.lesson-tabs button,.book-card,.lang-card h3{font-family:"Noto Naskh Arabic","Segoe UI","Arial",serif}
+.lesson-content{line-height:1.85}
+.lesson-title{line-height:1.5}
+
+.lesson-content{direction:rtl;text-align:right;line-height:2.1}.lesson-content ul,.lesson-content ol{padding-right:1.4rem;padding-left:0}
+.lesson-title,.idx-title{direction:rtl;text-align:right}.lp-list a span:nth-child(2){direction:rtl}.lp-cover h3,.lp-hero p,.book-card{unicode-bidi:plaintext}
